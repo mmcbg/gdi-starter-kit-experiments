@@ -16,6 +16,10 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: storage-db
+  labels:
+    app: gdi
+    component: storage
+    element: database
 spec:
   selector:
     matchLabels:
@@ -23,7 +27,7 @@ spec:
       component: storage
       element: database
   serviceName: storage-db
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
