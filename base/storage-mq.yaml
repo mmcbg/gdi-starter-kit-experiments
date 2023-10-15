@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbit-mq
+  labels:
+    app: gdi
+    component: storage
+    element: message-queue
+spec:
+  selector:
+    matchLabels:
+      app: gdi
+      component: storage
+      element: message-queue
+  template:
+    metadata:
+      labels:
+        app: gdi
+        component: storage
+        element: message-queue
+    spec:
+      containers:
+        - name: rabbitmq
+          image: ghcr.io/neicnordic/sda-mq:v1.4.28
+          ports:
+            - containerPort: 15672
+          env:
+            - name: MQ_PASSWORD_HASH
+              value: C5ufXbYlww6ZBcEqDUB04YdUptO81s+ozI3Ll5GCHTnv8NAm
+            - name: MQ_USER
+              value: test
+            - name: MQ_VHOST
+              value: gdi
+            - name: NOTLS
+              value: "true"
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - rabbitmq-diagnostics -q check_running && rabbitmq-diagnostics -q check_local_alarms
+            initialDelaySeconds: 20
+            timeoutSeconds: 20
+          resources:
+            requests:
+              cpu: "0.2"
+              memory: 100Mi
+            limits:
+              cpu: "1.0"
+              memory: 2Gi

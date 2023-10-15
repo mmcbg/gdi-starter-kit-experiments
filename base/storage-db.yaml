@@ -1,0 +1,81 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: storage-db
+spec:
+  selector:
+    app: gdi
+    component: storage
+    element: database
+  ports:
+    - port: 5432
+      targetPort: 5432
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: storage-db
+spec:
+  selector:
+    matchLabels:
+      app: gdi
+      component: storage
+      element: database
+  serviceName: storage-db
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: gdi
+        component: storage
+        element: database
+    spec:
+      initContainers:
+        - name: changeowner
+          image: busybox
+          command: ["sh", "-c", "chown -R 70:70 /var/lib/postgresql/data"]
+          volumeMounts:
+            - name: db-pvc
+              mountPath: /var/lib/postgresql/data
+      containers:
+        - name: postgres
+          image: ghcr.io/neicnordic/sda-db:v2.1.5
+          env:
+            - name: DB_LEGA_IN_PASSWORD
+              value: lega_in
+            - name: DB_LEGA_OUT_PASSWORD
+              value: "."
+            - name: POSTGRES_PASSWORD
+              value: rootpass
+            - name: NOTLS
+              value: "true"
+          volumeMounts:
+            - name: db-pvc
+              mountPath: /var/lib/postgresql/data
+          readinessProbe:
+            exec:
+              command:
+                - "pg_isready"
+                - "-h"
+                - "localhost"
+                - "-U"
+                - "postgres"
+            initialDelaySeconds: 20
+            failureThreshold: 20
+            timeoutSeconds: 20
+          resources:
+            requests:
+              cpu: "0.2"
+              memory: 100Mi
+            limits:
+              cpu: "1.0"
+              memory: 2Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: db-pvc
+      spec:
+        accessModes: [ ReadWriteOnce ]
+        resources:
+          requests:
+            storage: 3Gi
