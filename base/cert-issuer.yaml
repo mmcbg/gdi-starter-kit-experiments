@@ -1,0 +1,8 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: starter-kit-issuer
+spec:
+  ca:
+    secretName: root-secret
