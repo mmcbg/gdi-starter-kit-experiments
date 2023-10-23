@@ -1,0 +1,324 @@
+{
+  "bindings": [
+    {
+      "arguments": {},
+      "destination": "accessionIDs",
+      "destination_type": "queue",
+      "routing_key": "accessionIDs",
+      "source": "sda",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "destination": "archived",
+      "destination_type": "queue",
+      "routing_key": "archived",
+      "source": "sda",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "destination": "backup",
+      "destination_type": "queue",
+      "routing_key": "backup",
+      "source": "sda",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "destination": "completed",
+      "destination_type": "queue",
+      "routing_key": "completed",
+      "source": "sda",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "destination": "error",
+      "destination_type": "queue",
+      "routing_key": "error",
+      "source": "sda",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "destination": "files",
+      "destination_type": "queue",
+      "routing_key": "files",
+      "source": "sda",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "destination": "inbox",
+      "destination_type": "queue",
+      "routing_key": "inbox",
+      "source": "sda",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "destination": "ingest",
+      "destination_type": "queue",
+      "routing_key": "ingest",
+      "source": "sda",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "destination": "mappings",
+      "destination_type": "queue",
+      "routing_key": "mappings",
+      "source": "sda",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "destination": "verified",
+      "destination_type": "queue",
+      "routing_key": "verified",
+      "source": "sda",
+      "vhost": "gdi"
+    }
+  ],
+  "exchanges": [
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "sda",
+      "type": "topic",
+      "vhost": "gdi"
+    }
+  ],
+  "global_parameters": [],
+  "parameters": [],
+  "permissions": [
+    {
+      "configure": "",
+      "read": ".*",
+      "user": "ingest",
+      "vhost": "gdi",
+      "write": "sda"
+    },
+    {
+      "configure": "",
+      "read": ".*",
+      "user": "inbox",
+      "vhost": "gdi",
+      "write": "sda"
+    },
+    {
+      "configure": "",
+      "read": ".*",
+      "user": "verify",
+      "vhost": "gdi",
+      "write": "sda"
+    },
+    {
+      "configure": "",
+      "read": ".*",
+      "user": "mapper",
+      "vhost": "gdi",
+      "write": "sda"
+    },
+    {
+      "configure": "",
+      "read": ".*",
+      "user": "finalize",
+      "vhost": "gdi",
+      "write": "sda"
+    },
+    {
+      "configure": "",
+      "read": ".*",
+      "user": "sync",
+      "vhost": "gdi",
+      "write": "sda"
+    },
+    {
+      "configure": "",
+      "read": ".*",
+      "user": "download",
+      "vhost": "gdi",
+      "write": "sda"
+    },
+    {
+      "configure": ".*",
+      "read": ".*",
+      "user": "test",
+      "vhost": "gdi",
+      "write": ".*"
+    }
+  ],
+  "policies": [],
+  "queues": [
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "verified",
+      "type": "classic",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "error",
+      "type": "classic",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "accessionIDs",
+      "type": "classic",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "completed",
+      "type": "classic",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "mappings",
+      "type": "classic",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "files",
+      "type": "classic",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "backup",
+      "type": "classic",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "archived",
+      "type": "classic",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "ingest",
+      "type": "classic",
+      "vhost": "gdi"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "inbox",
+      "type": "classic",
+      "vhost": "gdi"
+    }
+  ],
+  "rabbit_version": "3.11.10",
+  "rabbitmq_version": "3.11.10",
+  "topic_permissions": [],
+  "users": [
+    {
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "limits": {},
+      "name": "download",
+      "password_hash": "zOe6VtXgNONSVW2ZB47PMp9S7lyPeiMlBgw6/8K61amqng6w",
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "limits": {},
+      "name": "sync",
+      "password_hash": "ibSgXq3lpeGNdPkRblIAdyzQO8ohv7E38/deZKBWgFvKhFIt",
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "limits": {},
+      "name": "inbox",
+      "password_hash": "AtnU+RyH2TJpMFhCEGS+IjQypnCckS952jYlnWy+hYRKS5DF",
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "limits": {},
+      "name": "ingest",
+      "password_hash": "vLpCmvH2aQf4INZp2vR1SxEYrYjvQDNw7VuIVT15hazjvHmH",
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "limits": {},
+      "name": "finalize",
+      "password_hash": "yOOH2PgrXb4C9rAlskOywj6ML90nm4Ghds0BHEEipwKsGy5P",
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "limits": {},
+      "name": "test",
+      "password_hash": "C5ufXbYlww6ZBcEqDUB04YdUptO81s+ozI3Ll5GCHTnv8NAm",
+      "tags": [
+        "administrator"
+      ]
+    },
+    {
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "limits": {},
+      "name": "verify",
+      "password_hash": "fjeuUGBL50wiAAm+7k52DxcjRqXqKynx6k0lvb4UIJd6oRGd",
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "limits": {},
+      "name": "mapper",
+      "password_hash": "2RAEfN/6NXaAbNjb2UHbVmK5nhlpBQ+IRI+/JqkUZIwRvhBM",
+      "tags": [
+        "none"
+      ]
+    }
+  ],
+  "vhosts": [
+    {
+      "limits": [],
+      "metadata": {
+        "description": "",
+        "tags": []
+      },
+      "name": "gdi"
+    }
+  ]
+}

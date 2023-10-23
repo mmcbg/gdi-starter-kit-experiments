@@ -1,0 +1,6 @@
+# sql-user-password-as-kustomize-secret.yaml
+nameReference:
+  - kind: ConfigMap
+    fieldSpecs:
+      - path: spec/override/statefulSet/spec/template/spec/volumes/configMap/name
+        kind: RabbitmqCluster
